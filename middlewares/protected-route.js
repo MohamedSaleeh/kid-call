@@ -1,4 +1,4 @@
-import { verifyToken } from "../token-verification.js";
+import { verifyToken } from "../utils/token-verification.js";
 
 export async function protectedRoute (req, res, next) {
     const authHeader = req.headers.authorization;
