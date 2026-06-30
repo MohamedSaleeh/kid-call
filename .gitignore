@@ -6,3 +6,5 @@ node_modules/
 # Wrangler / Cloudflare Workers local state and secrets
 .wrangler/
 .dev.vars
+
+migrations/
