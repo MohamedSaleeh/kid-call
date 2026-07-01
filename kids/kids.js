@@ -24,6 +24,10 @@ export async function addKid(req, res, next) {
 }
 
 export async function getKidsOf(req, res, next) {
+  if (req.params.id === "admin") {
+    next();
+  }
+
   const client = await createSupabaseClient();
   const user_id = req.params.id;
 
@@ -112,6 +116,36 @@ export async function callKid(req, res, next) {
     data: {
       call,
       kid: response,
+    },
+  });
+}
+
+// issue #5
+export async function confirmKid(req, res, next) {
+  if (req.user.role !== "admin") {
+    throw new AppError(
+      "You are not allowed to access this resource",
+      403,
+      error
+    );
+  }
+  const client = await createSupabaseClient();
+  const kid_id = req.params.id;
+
+  const { data, error } = await client
+    .from("kids")
+    .update({ is_confirmed: true })
+    .eq("id", kid_id)
+    .select("*")
+    .single();
+
+  if (error) {
+    throw new AppError("Could not confirm kid", 500, error);
+  }
+  res.status(200).json({
+    message: "Kid confirmed successfully",
+    data: {
+      kid: data,
     },
   });
 }
