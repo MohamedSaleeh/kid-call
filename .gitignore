@@ -1,4 +1,5 @@
 node_modules/
+migrations/
 .env
 .env.dev
 .env.prod
@@ -6,3 +7,4 @@ node_modules/
 # Wrangler / Cloudflare Workers local state and secrets
 .wrangler/
 .dev.vars
+

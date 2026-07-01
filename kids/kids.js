@@ -24,6 +24,10 @@ export async function addKid(req, res, next) {
 }
 
 export async function getKidsOf(req, res, next) {
+  if (req.params.id === "admin") {
+    next();
+  }
+
   const client = await createSupabaseClient();
   const user_id = req.params.id;
 
@@ -91,27 +95,4 @@ export async function callKid(req, res, next) {
   if (callError) {
     throw new AppError("Could not create call", 400, callError);
   }
-  const { data: callLog, error: callLogError } = await client
-    .from("call_logs")
-    .insert({
-      user_id,
-      kid_id,
-    })
-    .select("*")
-    .single();
-  if (callLogError) {
-    throw new AppError("Could not create call log", 400, callLogError);
-  }
-  const { data: response, error: responseError } = await client
-    .from("kids")
-    .select("*")
-    .eq("id", kid_id)
-    .single();
-  return res.status(200).json({
-    message: "Kid call initiated successfully",
-    data: {
-      call,
-      kid: response,
-    },
-  });
 }
