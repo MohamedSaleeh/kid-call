@@ -91,17 +91,7 @@ export async function callKid(req, res, next) {
   if (callError) {
     throw new AppError("Could not create call", 400, callError);
   }
-  const { data: callLog, error: callLogError } = await client
-    .from("call_logs")
-    .insert({
-      user_id,
-      kid_id,
-    })
-    .select("*")
-    .single();
-  if (callLogError) {
-    throw new AppError("Could not create call log", 400, callLogError);
-  }
+
   const { data: response, error: responseError } = await client
     .from("kids")
     .select("*")
