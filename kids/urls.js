@@ -17,4 +17,4 @@ router.post("/:id/call", validateCallKid, callKid);
 
 router.get("/admin/all", getAllKids);
 
-router.post("/:id/confirm", validateConfirmKid, confirmKid); // issue #5
+router.post("/:id/confirm", validateConfirmKid, confirmKid);

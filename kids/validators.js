@@ -62,7 +62,6 @@ export function validateCallKid(req, res, next) {
   next();
 }
 
-//issue #5
 export function validateConfirmKid(req, res, next) {
   const kid_id = req.params.id;
 

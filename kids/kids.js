@@ -119,8 +119,6 @@ export async function callKid(req, res, next) {
     },
   });
 }
-
-// issue #5
 export async function confirmKid(req, res, next) {
   if (req.user.role !== "admin") {
     throw new AppError(
