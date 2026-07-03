@@ -114,4 +114,6 @@ export async function callKid(req, res, next) {
       kid: response,
     },
   });
+
+  res.send({ message: `Calling kid with id ${kid_id}` });
 }

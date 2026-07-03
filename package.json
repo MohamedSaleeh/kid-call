@@ -7,7 +7,7 @@
   "type": "module",
   "main": "app.js",
   "scripts": {
-    "seed-admin": "node ./seeds/seed-admin.js",
+    "seed-admin": "dotenv -e .env.dev -- node ./seeds/seed-admin.js",
     "dev": "dotenv -e .env.dev -- nodemon app.js",
     "prod": "dotenv -e .env.prod -- node app.js",
     "wdev": "wrangler dev --env dev",

@@ -4,6 +4,11 @@ import {
   validateAddingKid,
   validateGetKidsOf,
   validateCallKid,
+import { addKid, getKidsOf, callKid } from "./kids.js";
+import {
+  validateAddingKid,
+  validateGetKidsOf,
+  validateCallKid
 } from "./validators.js";
 
 export const router = express.Router();
