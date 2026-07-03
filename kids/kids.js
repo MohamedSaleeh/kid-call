@@ -24,6 +24,10 @@ export async function addKid(req, res, next) {
 }
 
 export async function getKidsOf(req, res, next) {
+  if (req.params.id === "admin") {
+    next();
+  }
+
   const client = await createSupabaseClient();
   const user_id = req.params.id;
 
@@ -104,4 +108,6 @@ export async function callKid(req, res, next) {
       kid: response,
     },
   });
+
+  res.send({ message: `Calling kid with id ${kid_id}` });
 }
