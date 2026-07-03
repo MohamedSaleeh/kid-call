@@ -1,5 +1,5 @@
 import express from "express";
-import { addKid, getKidsOf, callKid, getAllKids, confirmKid } from "./kids.js";
+import { addKid, getKidsOf, callKid, confirmKid } from "./kids.js";
 import {
   validateAddingKid,
   validateGetKidsOf,
