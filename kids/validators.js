@@ -47,7 +47,7 @@ export function validateCallKid(req, res, next) {
   const kid_id = req.params.id;
 
   const schema = Joi.object({
-    kid_id: Joi.string().uuid().required(),
+    kid_id: Joi.string().required(),
   });
 
   const { error } = schema.validate({
