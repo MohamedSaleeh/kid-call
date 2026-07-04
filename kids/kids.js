@@ -84,6 +84,30 @@ export async function callKid(req, res, next) {
   if (!kid.is_confirmed) {
     throw new AppError("Kid is not confirmed", 400);
   }
+  const { data: call, error: callError } = await client
+    .from("calls")
+    .insert({
+      user_id,
+      kid_id,
+    })
+    .select("*")
+    .single();
+  if (callError) {
+    throw new AppError("Could not create call", 400, callError);
+  }
+
+  const { data: response, error: responseError } = await client
+    .from("kids")
+    .select("*")
+    .eq("id", kid_id)
+    .single();
+  return res.status(200).json({
+    message: "Kid call initiated successfully",
+    data: {
+      call,
+      kid: response,
+    },
+  });
 
   res.send({ message: `Calling kid with id ${kid_id}` });
 }
