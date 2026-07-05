@@ -16,3 +16,4 @@ router.get("/:id", validateGetKidsOf, getKidsOf);
 router.post("/:id/call", validateCallKid, callKid);
 
 router.post("/:id/confirm", validateConfirmKid, confirmKid);
+
