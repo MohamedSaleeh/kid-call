@@ -1,5 +1,5 @@
 import express from "express";
-import { addKid, getKidsOf, callKid, confirmKid ,getAllKids} from "./kids.js";
+import { addKid, getKidsOf, callKid, confirmKid } from "./kids.js";
 import {
   validateAddingKid,
   validateGetKidsOf,
@@ -14,7 +14,5 @@ router.post("/", validateAddingKid, addKid);
 router.get("/:id", validateGetKidsOf, getKidsOf);
 
 router.post("/:id/call", validateCallKid, callKid);
-
-router.get("/admin/all", getAllKids);
 
 router.post("/:id/confirm", validateConfirmKid, confirmKid);
