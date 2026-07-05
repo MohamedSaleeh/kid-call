@@ -53,7 +53,7 @@ export async function getAllKids(req, res, next) {
   const { data, error } = await client.from("kids").select("*");
 
   if (error) {
-    throw new AppError("Could not getting all kids", 403, error);
+    throw new AppError("Could not getting all kids", 500, error);
   }
 
   res.send(data);
@@ -91,17 +91,7 @@ export async function callKid(req, res, next) {
   if (callError) {
     throw new AppError("Could not create call", 400, callError);
   }
-  const { data: callLog, error: callLogError } = await client
-    .from("call_logs")
-    .insert({
-      user_id,
-      kid_id,
-    })
-    .select("*")
-    .single();
-  if (callLogError) {
-    throw new AppError("Could not create call log", 400, callLogError);
-  }
+
   const { data: response, error: responseError } = await client
     .from("kids")
     .select("*")
