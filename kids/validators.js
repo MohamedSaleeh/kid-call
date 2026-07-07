@@ -43,7 +43,8 @@ export function validateGetKidsOf(req, res, next) {
   next();
 }
 
-export function validateCallKid(req, res, next) {
+
+export function validateConfirmKid(req, res, next) {
   const kid_id = req.params.id;
 
   const schema = Joi.object({
